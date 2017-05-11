@@ -37,25 +37,25 @@ app.config(function($routeProvider, $authProvider) {
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
-      controller: 'controllers/LoginCtrl',
+      controller: 'LoginCtrl',
       resolve: {
         skipIfLoggedIn: skipIfLoggedIn
       }
     })
-    .when('/register', {
-      templateUrl: 'partials/register.html',
-      controller: 'controllers/RegisterCtrl',
-      resolve: {
-        skipIfLoggedIn: skipIfLoggedIn
-      }
-    })
-    .when('/logout', {
-      template: null,
-      controller: 'controllers/LogoutCtrl'
-    })
+    // .when('/register', {
+    //   templateUrl: 'partials/register.html',
+    //   controller: 'RegisterCtrl',
+    //   resolve: {
+    //     skipIfLoggedIn: skipIfLoggedIn
+    //   }
+    // })
+    // .when('/logout', {
+    //   template: null,
+    //   controller: 'LogoutCtrl'
+    // })
     // .when('/game', {
     //   templateUrl: 'partials/game.html',
-    //   controller: 'controllers/GameCtrl',
+    //   controller: 'GameCtrl',
     //   resolve: {
     //     loginRequired: loginRequired
     //   }
