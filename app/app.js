@@ -2,7 +2,7 @@
 
 const app = angular.module('ABC', ['ngRoute', 'satellizer'])
 
-app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+app.config(function($routeProvider, $authProvider) {
 
     /**
      * Helper auth functions
@@ -30,49 +30,41 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
     /**
      * App routes
      */
-    $stateProvider
-      .state('home', {
-        url: '/',
-        controller: 'HomeCtrl',
-        templateUrl: 'partials/home.html'
+    $routeProvider
+      .when('/', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       })
-      .state('login', {
-        url: '/login',
+      .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
         resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
-      .state('register', {
-        url: '/register',
+      .when('/register', {
         templateUrl: 'partials/register.html',
         controller: 'RegisterCtrl',
         resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
-      .state('logout', {
-        url: '/logout',
+      .when('/logout', {
         template: null,
         controller: 'LogoutCtrl'
       })
-      .state('game', {
-        url: '/game',
+      .when('/game', {
         templateUrl: 'partials/game.html',
         controller: 'GameCtrl',
         resolve: {
           loginRequired: loginRequired
         }
-      });
-    $urlRouterProvider.otherwise('/');
+      })
+      .otherwise('/');
 
     /**
      *  Satellizer config
      */
 
-    $authProvider.abc({
-      clientId: 'email'
-    });
 
   });
