@@ -15,17 +15,17 @@ app.config(function($routeProvider) {
     .when('/login', {
       templateUrl: 'partials/login.html',
       controller: 'LoginCtrl',
-      resolve: {
-        skipIfLoggedIn: skipIfLoggedIn
-      }
+      // resolve: {
+      //   skipIfLoggedIn: skipIfLoggedIn
+      // }
     })
-    // .when('/register', {
-    //   templateUrl: 'partials/register.html',
-    //   controller: 'RegisterCtrl',
-    //   resolve: {
-    //     skipIfLoggedIn: skipIfLoggedIn
-    //   }
-    // })
+    .when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'RegisterCtrl',
+      // resolve: {
+      //   skipIfLoggedIn: skipIfLoggedIn
+      // }
+    })
     // .when('/logout', {
     //   template: null,
     //   controller: 'LogoutCtrl'
@@ -39,11 +39,5 @@ app.config(function($routeProvider) {
     // })
     .otherwise('/');
 
-  /**
-   *  Satellizer config
-   */
-
-  $authProvider.loginUrl = 'localhost:3000/auth/login';
-  $authProvider.signupUrl = 'localhost:3000/auth/register';
 
 });
