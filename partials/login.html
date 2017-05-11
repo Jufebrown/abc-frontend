@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center">Log in</h2>
-    <form method="post" ng-submit="login()" name="loginForm">
+    <h2 class=" ">Log in</h2>
+    <form method="post" ng-submit="emailLogin()" name="loginForm">
       <div class="form-group">
         <input class="form-control input-lg" type="text" name="username" ng-model="user.username" placeholder="username" required autofocus>
         <span class="form-control-feedback"></span>
@@ -13,7 +13,7 @@
       <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success">Log in</button>
       <br/>
       <p class="text-center text-muted">
-        <small>Don't have an account yet? <a href="/#/register">Register</a></small>
+        <small>Don't have an account yet? <a href="/register">Register</a></small>
       </p>
     </form>
   </div>
