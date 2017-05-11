@@ -1,15 +1,19 @@
 `use strict`
 
-app.controller('SignupCtrl', function($scope, $location, $auth) {
-    $scope.signup = function() {
-      $auth.signup($scope.user)
-        .then(function(response) {
-          $auth.setToken(response);
-          $location.path('/');
-          console.log('You have successfully created a new account and have been signed-in');
-        })
-        .catch(function(response) {
-          console.error(response.data.message);
-        });
-    };
-  });
+app.controller('RegisterCtrl', function($scope, $location, authFactory) {
+
+  $scope.register = function() {
+    console.log($scope.user)
+    authFactory.register($scope.user)
+    .then(function(response) {
+      console.log('token', response.data)
+    })
+    .catch(function(response) {
+      $scope.errorMessage = {};
+      angular.forEach(response.data.message, function(message, field) {
+        $scope.loginForm[field].$setValidity('server', false);
+        $scope.errorMessage[field] = response.data.message[field];
+      })
+    })
+  }
+})
