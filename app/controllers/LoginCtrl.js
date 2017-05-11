@@ -5,7 +5,7 @@ app.controller('LoginCtrl', function($scope, $location, $auth) {
     $auth.login($scope.user)
       .then(function() {
         console.log('You have successfully signed in!');
-        $location.path('/mainMenu');
+        $location.path('/');
       })
       .catch(function(error) {
         console.error(error.data.message, error.status);
@@ -15,7 +15,7 @@ app.controller('LoginCtrl', function($scope, $location, $auth) {
     $auth.authenticate(provider)
       .then(function() {
         console.log('You have successfully signed in.');
-        $location.path('/mainMenu');
+        $location.path('/');
       })
       .catch(function(error) {
         if (error.message) {
