@@ -1,30 +1,78 @@
 `use strict`
 
-const app = angular.module('ABC', ['ngRoute', 'ABC.config', 'ABC.auth'])
+const app = angular.module('ABC', ['ngRoute', 'satellizer'])
 
-$(".nav a").on("click", function(){
-   $(".nav").find(".active").removeClass("active");
-   $(this).parent().addClass("active");
-});
+app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
-app.config(['$routeProvider', function($routeProvider){
-      $routeProvider
-      .when('/', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeCtrl'
-      }).when('/register', {
-        templateUrl: 'partials/register.html',
-        controller: 'RegisterCtrl'
-      }).when('/game', {
-        templateUrl: 'partials/login.html',
-        controller: 'LoginCtrl'
-      }).when('/game', {
-        templateUrl: 'partials/game.html',
-        controller: 'GameCtrl'
-      }).when('/stats', {
-        templateUrl: 'partials/stats.html',
-        controller: 'StatsCtrl'
-      }).otherwise({
-        redirectTo: '/'
+    /**
+     * Helper auth functions
+     */
+    const skipIfLoggedIn = ['$q', '$auth', function($q, $auth) {
+      const deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.reject();
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }];
+
+    const loginRequired = ['$q', '$location', '$auth', function($q, $location, $auth) {
+      const deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/login');
+      }
+      return deferred.promise;
+    }];
+
+    /**
+     * App routes
+     */
+    $stateProvider
+      .state('home', {
+        url: '/',
+        controller: 'HomeCtrl',
+        templateUrl: 'partials/home.html'
       })
-}])
+      .state('login', {
+        url: '/login',
+        templateUrl: 'partials/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: 'partials/register.html',
+        controller: 'RegisterCtrl',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('logout', {
+        url: '/logout',
+        template: null,
+        controller: 'LogoutCtrl'
+      })
+      .state('game', {
+        url: '/game',
+        templateUrl: 'partials/game.html',
+        controller: 'GameCtrl',
+        resolve: {
+          loginRequired: loginRequired
+        }
+      });
+    $urlRouterProvider.otherwise('/');
+
+    /**
+     *  Satellizer config
+     */
+
+    $authProvider.abc({
+      clientId: 'email'
+    });
+
+  });
