@@ -1,0 +1,22 @@
+{
+  "name": "abc-frontend",
+  "homepage": "https://github.com/Jufebrown/abc-frontend",
+  "authors": [
+    "Jufebrown <jufebrown@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "materialize": "^0.98.2"
+  }
+}
