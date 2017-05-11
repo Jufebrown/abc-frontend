@@ -1,31 +1,8 @@
 `use strict`
 
-const app = angular.module('ABC', ['ngRoute', 'satellizer'])
+const app = angular.module('ABC', ['ngRoute'])
 
-app.config(function($routeProvider, $authProvider) {
-
-  /**
-   * Helper auth functions
-   */
-  const skipIfLoggedIn = ['$q', '$auth', function($q, $auth) {
-    const deferred = $q.defer();
-    if ($auth.isAuthenticated()) {
-      deferred.reject();
-    } else {
-      deferred.resolve();
-    }
-    return deferred.promise;
-  }];
-
-  const loginRequired = ['$q', '$location', '$auth', function($q, $location, $auth) {
-    const deferred = $q.defer();
-    if ($auth.isAuthenticated()) {
-      deferred.resolve();
-    } else {
-      $location.path('/login');
-    }
-    return deferred.promise;
-  }];
+app.config(function($routeProvider) {
 
   /**
    * App routes
