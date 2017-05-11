@@ -1,32 +1,19 @@
 `use strict`
 
-app.controller('LoginCtrl', function($scope, $location, $auth) {
-  $scope.login = function() {
-    $auth.login($scope.user)
-      .then(function() {
-        console.log('You have successfully signed in!');
-        $location.path('/');
-      })
-      .catch(function(error) {
-        console.error(error.data.message, error.status);
+app.controller('LoginCtrl', function($rootScope, $scope, $location, $auth, $window) {
+
+  $scope.emailLogin = function() {
+    $auth.login({ email: $scope.email, password: $scope.password })
+    .then(function(response) {
+      $window.localStorage.currentUser = JSON.stringify(response.data.user);
+      $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+    })
+    .catch(function(response) {
+      $scope.errorMessage = {};
+      angular.forEach(response.data.message, function(message, field) {
+        $scope.loginForm[field].$setValidity('server', false);
+        $scope.errorMessage[field] = response.data.message[field];
       });
-  };
-  $scope.authenticate = function(provider) {
-    $auth.authenticate(provider)
-      .then(function() {
-        console.log('You have successfully signed in.');
-        $location.path('/');
-      })
-      .catch(function(error) {
-        if (error.message) {
-          // Satellizer promise reject error.
-          console.error(error.message);
-        } else if (error.data) {
-          // HTTP response error from server
-          console.error(error.data.message, error.status);
-        } else {
-          console.error(error);
-        }
-      });
+    });
   };
 });
