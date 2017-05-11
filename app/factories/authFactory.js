@@ -14,13 +14,24 @@ app.factory('authFactory', function($http) {
     },
 
     login: function({username, password}) {
-      const baseURL = 'http://localhost:3000/api/v1/auth/';
       return $http({
         method: 'POST',
         url: baseURL + 'login',
         data: {username, password},
         headers: {'Content-Type': 'application/json'}
       })
+    },
+
+    ensureAuthenticated: function(token) {
+      return $http({
+        method: 'GET',
+        url: baseURL + 'user',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      })
     }
+
   }
 })
