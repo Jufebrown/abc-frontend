@@ -6,14 +6,11 @@ app.controller('RegisterCtrl', function($scope, $location, authFactory) {
     console.log($scope.user)
     authFactory.register($scope.user)
     .then(function(response) {
-      console.log('token', response.data)
+      localStorage.setItem('username', $scope.user.username)
+      localStorage.setItem('token', response.data.token)
     })
-    .catch(function(response) {
-      $scope.errorMessage = {};
-      angular.forEach(response.data.message, function(message, field) {
-        $scope.loginForm[field].$setValidity('server', false);
-        $scope.errorMessage[field] = response.data.message[field];
-      })
+    .catch((err) => {
+      console.log(err)
     })
   }
 })
