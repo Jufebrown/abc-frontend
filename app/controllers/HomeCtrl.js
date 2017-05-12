@@ -4,6 +4,7 @@ app.controller('HomeCtrl', function($scope, $location, authFactory) {
 
   $scope.authStatus = function() {
     $scope.isLoggedIn = false
+    localStorage.isLoggedIn = false
     const token = localStorage.token
     if(token){
       authFactory.ensureAuthenticated(token)

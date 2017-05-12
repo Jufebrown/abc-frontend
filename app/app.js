@@ -24,7 +24,7 @@ app.config(function($routeProvider) {
       resolve : {
         //This function is injected with the AuthService where you'll put your authentication logic
         'auth' : (authFactory) => {
-          return authFactory.ensureAuthenticated()
+          return authFactory.authenticateRoute()
         }
       }
     })
