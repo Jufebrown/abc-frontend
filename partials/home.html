@@ -1,0 +1,11 @@
+<h1>Aidan's Bestial Companions</h1>
+
+<div ng-if="!isLoggedIn" class="container">
+  <a class="waves-effect waves-light btn-large green" href="/#!/login">Login</a>
+  <a class="waves-effect waves-light btn-large blue" href="/#!/register">Register</a>
+</div>
+
+<div ng-if="isLoggedIn" class="container">
+  <h4>welcome <a href="#" ng-click="logout()">{{username}}</a></h4>
+  <a class="waves-effect waves-green btn-large btn-flat">Play</a>
+</div>
