@@ -23,6 +23,13 @@ app.factory('authFactory', function($http) {
       })
     },
 
+    // logs user out
+    logout: function() {
+      localStorage.token = ""
+      localStorage.username = ""
+    },
+
+    // makes sure user token is valid
     ensureAuthenticated: function(token) {
       return $http({
         method: 'GET',
