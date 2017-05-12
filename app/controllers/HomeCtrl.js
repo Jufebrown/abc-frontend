@@ -1,5 +1,5 @@
 `use strict`
 
-app.controller('HomeCtrl', function($scope, $location) {
+app.controller('HomeCtrl', function($scope, $location, authFactory) {
 
 });
