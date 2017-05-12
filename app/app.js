@@ -1,30 +1,42 @@
 `use strict`
 
-const app = angular.module('ABC', ['ngRoute', 'ABC.config', 'ABC.auth'])
+const app = angular.module('ABC', ['ngRoute'])
 
-$(".nav a").on("click", function(){
-   $(".nav").find(".active").removeClass("active");
-   $(this).parent().addClass("active");
-});
+app.config(function($routeProvider) {
 
-app.config(['$routeProvider', function($routeProvider){
-      $routeProvider
-      .when('/', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeCtrl'
-      }).when('/register', {
-        templateUrl: 'partials/register.html',
-        controller: 'RegisterCtrl'
-      }).when('/game', {
-        templateUrl: 'partials/login.html',
-        controller: 'LoginCtrl'
-      }).when('/game', {
-        templateUrl: 'partials/game.html',
-        controller: 'GameCtrl'
-      }).when('/stats', {
-        templateUrl: 'partials/stats.html',
-        controller: 'StatsCtrl'
-      }).otherwise({
-        redirectTo: '/'
-      })
-}])
+  // App routes
+  $routeProvider
+    .when('/', {
+      templateUrl: 'partials/home.html',
+      controller: 'HomeCtrl'
+    })
+    .when('/login', {
+      templateUrl: 'partials/login.html',
+      controller: 'LoginCtrl'
+    })
+    .when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'RegisterCtrl'
+    })
+    .when('/game', {
+      templateUrl: 'partials/game.html',
+      controller: 'GameCtrl',
+      resolve : {
+        //This function is injected with the AuthService where you'll put your authentication logic
+        'auth' : (authFactory) => {
+          return authFactory.authenticateRoute()
+        }
+      }
+    })
+    .otherwise('/')
+
+})
+
+app.run(function($rootScope, $location){
+  //If the route change failed due to authentication error, redirect them out
+  $rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
+    if(rejection === 'Not Authenticated'){
+      $location.path('/');
+    }
+  })
+})
