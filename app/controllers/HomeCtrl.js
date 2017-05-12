@@ -2,9 +2,9 @@
 
 app.controller('HomeCtrl', function($scope, $location, authFactory) {
 
-  $scope.authStatus = function() {
+  $scope.authStatus = () => {
     $scope.isLoggedIn = false
-    localStorage.isLoggedIn = false
+    localStorage.setItem('isLoggedIn', false)
     const token = localStorage.token
     if(token){
       authFactory.ensureAuthenticated(token)
@@ -12,7 +12,7 @@ app.controller('HomeCtrl', function($scope, $location, authFactory) {
         if (user.data.status === 'success')
         $scope.isLoggedIn = true
         $scope.username = localStorage.username
-        localStorage.isLoggedIn = true
+        localStorage.setItem('isLoggedIn', true)
       })
       .catch((err) => {
         console.log(err)
