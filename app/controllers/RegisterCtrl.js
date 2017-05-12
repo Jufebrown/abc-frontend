@@ -3,11 +3,11 @@
 app.controller('RegisterCtrl', function($scope, $location, authFactory) {
 
   $scope.register = function() {
-    console.log($scope.user)
     authFactory.register($scope.user)
     .then(function(response) {
       localStorage.setItem('username', $scope.user.username)
       localStorage.setItem('token', response.data.token)
+      $location.path('/')
     })
     .catch((err) => {
       console.log(err)
