@@ -3,7 +3,7 @@ app.factory('authFactory', function($http) {
   const baseURL = 'http://localhost:3000/api/v1/auth/';
 
   return {
-
+    // registers an new user with username and password
     register: function({username, password}) {
       return $http({
         method: 'POST',
@@ -13,6 +13,7 @@ app.factory('authFactory', function($http) {
       })
     },
 
+    // logs in a user with username and password
     login: function({username, password}) {
       return $http({
         method: 'POST',
