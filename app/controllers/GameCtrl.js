@@ -7,12 +7,14 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
   $scope.questionLetter = gameFactory.getRandomLetter()
 
   // $scope.checkAnimal = function() {
-  //   // gameFactory.checkWord($scope.answer)
-  //   // .then(function(response) {
+  //   gameFactory.checkABCWord($scope.answer)
+  //   .then(function(response) {
+  //     if(response === null) {
 
-  //   // })
-  //   // .catch((err) => {
-  //   //   console.log(err)
-  //   // })
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
   // }
 })
