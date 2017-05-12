@@ -1,16 +1,18 @@
 `use strict`
 
-app.controller('GameCtrl', function($scope, $location) {
+app.controller('GameCtrl', function($scope, $location, gameFactory) {
 
-  $scope.login = function() {
-    authFactory.login($scope.user)
-    .then(function(response) {
-      localStorage.setItem('username', $scope.user.username)
-      localStorage.setItem('token', response.data.token)
-      $location.url('/')
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
+  $scope.username = localStorage.getItem('username')
+
+  $scope.questionLetter = gameFactory.getRandomLetter()
+
+  // $scope.checkAnimal = function() {
+  //   // gameFactory.checkWord($scope.answer)
+  //   // .then(function(response) {
+
+  //   // })
+  //   // .catch((err) => {
+  //   //   console.log(err)
+  //   // })
+  // }
 })
