@@ -1,4 +1,4 @@
-app.factory('authFactory', function($http) {
+app.factory('authFactory', function($http, $q) {
 
   const baseURL = 'http://localhost:3000/api/v1/auth/';
 
@@ -42,13 +42,16 @@ app.factory('authFactory', function($http) {
     },
 
     authenticateRoute : function() {
-        if(localStorage.isLoggedIn){
-            //If authenticated, return anything you want, probably a user object
-            return true;
-        } else {
-            //Else send a rejection
-            return $q.reject('Not Authenticated');
-        }
+      console.log('isLoggedIn', localStorage.isLoggedIn)
+      if(localStorage.isLoggedIn === 'true'){
+        console.log('loggedIn in true')
+        //If authenticated, return anything you want, probably a user object
+        return true;
+      } else {
+        console.log('loggedIn in else')
+        //Else send a rejection
+        return $q.reject('Not Authenticated')
+      }
     }
 
   }
