@@ -12,6 +12,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
   $scope.username = localStorage.getItem('username')
 
   $scope.questionLetter = gameFactory.getRandomLetter()
+  $scope.currentLetter = $scope.questionLetter
 
   $scope.checkAnimal = function() {
     $scope.gameState = {
@@ -20,14 +21,16 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
                          correct: false,
                          incorrect: false
                        }
-    gameFactory.checkABCWord($scope.answer)
-    // .then(function(response) {
-    //   if(response === null) {
+    if(gameFactory.checkStartLetter($scope.answer, $scope.currentLetter)) {
+      gameFactory.checkABCWord($scope.answer)
+      // .then(function(response) {
+      //   if(response === null) {
 
-    //   }
-    // })
-    .catch((err) => {
-      console.log(err)
-    })
+      //   }
+      // })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   }
 })
