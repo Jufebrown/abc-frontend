@@ -7,7 +7,7 @@ app.controller('LoginCtrl', function($scope, $location, authFactory) {
     .then(function(response) {
       localStorage.setItem('username', $scope.user.username)
       localStorage.setItem('token', response.data.token)
-      $location.path('/')
+      $location.url('/')
     })
     .catch((err) => {
       console.log(err)

@@ -4,9 +4,7 @@ const app = angular.module('ABC', ['ngRoute'])
 
 app.config(function($routeProvider) {
 
-  /**
-   * App routes
-   */
+  // App routes
   $routeProvider
     .when('/', {
       templateUrl: 'partials/home.html',
@@ -14,30 +12,31 @@ app.config(function($routeProvider) {
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
-      controller: 'LoginCtrl',
-      // resolve: {
-      //   skipIfLoggedIn: skipIfLoggedIn
-      // }
+      controller: 'LoginCtrl'
     })
     .when('/register', {
       templateUrl: 'partials/register.html',
-      controller: 'RegisterCtrl',
-      // resolve: {
-      //   skipIfLoggedIn: skipIfLoggedIn
-      // }
+      controller: 'RegisterCtrl'
     })
-    // .when('/logout', {
-    //   template: null,
-    //   controller: 'LogoutCtrl'
-    // })
-    // .when('/game', {
-    //   templateUrl: 'partials/game.html',
-    //   controller: 'GameCtrl',
-    //   resolve: {
-    //     loginRequired: loginRequired
-    //   }
-    // })
-    .otherwise('/');
+    .when('/game', {
+      templateUrl: 'partials/game.html',
+      controller: 'GameCtrl',
+      resolve : {
+        //This function is injected with the AuthService where you'll put your authentication logic
+        'auth' : (authFactory) => {
+          return authFactory.ensureAuthenticated()
+        }
+      }
+    })
+    .otherwise('/')
 
+})
 
-});
+app.run(function($rootScope, $location){
+  //If the route change failed due to authentication error, redirect them out
+  $rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
+    if(rejection === 'Not Authenticated'){
+      $location.path('/');
+    }
+  })
+})
