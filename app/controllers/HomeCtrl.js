@@ -2,6 +2,9 @@
 
 app.controller('HomeCtrl', function($scope, $location, authFactory) {
 
+  localStorage.questionCount = 0
+  localStorage.correctAnswerCount = 0
+
   $scope.authStatus = () => {
     $scope.isLoggedIn = false
     localStorage.setItem('isLoggedIn', false)
