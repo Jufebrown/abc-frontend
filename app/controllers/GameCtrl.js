@@ -12,16 +12,16 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
   $scope.username = localStorage.getItem('username')
 
   $scope.questionLetter = gameFactory.getRandomLetter()
-  $scope.currentLetter = $scope.questionLetter
 
   $scope.checkAnimal = function() {
-    $scope.gameState = {
-                         question: false,
-                         thinking: true,
-                         correct: false,
-                         incorrect: false
-                       }
-    if(gameFactory.checkStartLetter($scope.answer, $scope.currentLetter)) {
+    $scope.gameState ={
+      question: false,
+      thinking: true,
+      correct: false,
+      incorrect: false
+    }
+    console.log('$scope.questionLetter', $scope.questionLetter)
+    if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
       gameFactory.checkABCWord($scope.answer)
       // .then(function(response) {
       //   if(response === null) {
