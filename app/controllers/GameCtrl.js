@@ -2,12 +2,12 @@
 
 app.controller('GameCtrl', function($scope, $location, gameFactory) {
 
-  $scope.gameState = {
-                       question: true,
-                       thinking: false,
-                       correct: false,
-                       incorrect: false
-                     }
+  $scope.gameState ={
+    question: true,
+    thinking: false,
+    correct: false,
+    incorrect: false
+  }
 
   $scope.username = localStorage.getItem('username')
 
