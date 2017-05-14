@@ -57,13 +57,6 @@ app.factory('gameFactory', function($http, $q) {
           Authorization: 'Bearer ' + token
         }
       })
-      .then((response) => {
-        if(response.data === null) {
-          console.log('response from null', response.data)
-        } else {
-          console.log('response', response.data)
-        }
-      })
       .catch((err) => {
         console.log(err)
       })
