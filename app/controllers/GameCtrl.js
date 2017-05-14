@@ -22,12 +22,17 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
     }
     console.log('$scope.questionLetter', $scope.questionLetter)
     if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
-      gameFactory.checkABCWord($scope.answer)
-      // .then(function(response) {
-      //   if(response === null) {
+      gameFactory.checkAnswer($scope.answer)
+      .then(function(response) {
+        console.log('response from abc', response.data)
+        if (response.data === null) {
+          gameFactory.searchSpeciesApi($scope.answer)
+          .then(({data}) => {
+            console.log('res from species', data.results)
 
-      //   }
-      // })
+          })
+        }
+      })
       .catch((err) => {
         console.log(err)
       })
