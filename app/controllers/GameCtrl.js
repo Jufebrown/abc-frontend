@@ -18,13 +18,13 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   $scope.questionLetter = gameFactory.getRandomLetter()
 
   $scope.checkAnimal = function() {
-    $scope.gameState = {
-      question: false,
-      thinking: true,
-      correct: false,
-      incorrect: false,
-      gameOver: false
-    }
+      $scope.gameState = {
+        question: false,
+        thinking: true,
+        correct: false,
+        incorrect: false,
+        gameOver: false
+      }
     console.log('$scope.questionLetter', $scope.questionLetter)
     if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
       gameFactory.checkAnswer($scope.answer)
