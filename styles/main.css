@@ -32,6 +32,10 @@ body {
   color: red;
 }
 
+.other-auth-option {
+  padding-top: 5em;
+}
+
 .hello {
   color: blue;
 }
