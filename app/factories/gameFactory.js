@@ -16,6 +16,7 @@ app.factory('gameFactory', function($http, $q) {
     analyzeSpeciesApiResults: (answer, data) => {
       // checks to see if any results were returned
       if (data.length > 0) {
+        // loops through data objects
         for (var i = 0; i < data.length; i++) {
           // checks to see if there are any vernacularNames
           if (data[i].vernacularNames > 0) {
@@ -38,8 +39,11 @@ app.factory('gameFactory', function($http, $q) {
           }
         }
       } else {
+        // if no data, returns false
         return false
       }
+      // if it makes it through loop of all data without returning true, returns false
+      return false
     },
 
     searchSpeciesApi: function(animal) {
