@@ -30,28 +30,35 @@ app.factory('gameFactory', function($http, $q) {
     analyzeSpeciesApiResults: (answer, data) => {
       // checks to see if any results were returned
       if (data.length > 0) {
+        console.log('data is not 0 length')
         // loops through data objects
         for (var i = 0; i < data.length; i++) {
-          // checks to see if there are any vernacular names or if there is a canonical name
-          if (data[i].vernacularNames > 0 || data.canonicalName) {
+          // checks to see if there is a canonical name
+          if (data.canonicalName) {
+            console.log('there is a canonical name')
             // checks to see if canonical name is the same as the answer
             if (data.canonicalName.toLowerCase() === answer.toLowerCase()) {
+              console.log('canonicalName is the same as answer')
               // checks to see if it's in the animal kingdom
-              if (data[i].kingdom === 'animalia' || 'metazoa') {
-                  return true
-              } else {
-                // loops through vernacular names
-                for (var j = 0; j < data[i].vernacularNames.length; j++) {
-                  // checks to see if vernacularName is the same as the answer
-                  if(data[i].vernacularNames[j].vernacularName.toLowerCase() === answer.toLowerCase()) {
-                    // checks to see if there is a kingdom key
-                    if (data[i].kingdom) {
-                      // checks to see if kingdom is correct to make the creature an animal
-                      if (data[i].kingdom === 'animalia' || 'metazoa') {
-                        return true
-                      }
-                    }
+              if (data[i].kingdom.toLowerCase() === 'animalia' || 'metazoa') {
+                console.log('kindom is animal or metazoa, should return true')
+                return true
+              }
+            }
+          } else if (data[i].vernacularNames > 0) {
+            // loops through vernacular names
+            for (var j = 0; j < data[i].vernacularNames.length; j++) {
+              // checks to see if vernacularName is the same as the answer
+              if(data[i].vernacularNames[j].vernacularName.toLowerCase() === answer.toLowerCase()) {
+                console.log('vernacular name is same as answer')
+                // checks to see if there is a kingdom key
+                if (data[i].kingdom) {
+                  // checks to see if kingdom is correct to make the creature an animal
+                  if (data[i].kingdom.toLowerCase() === 'animalia' || 'metazoa') {
+                    return true
                   }
+                } else {
+                  //TODO: logic for no kingdom when vernacular name matches
                 }
               }
             }
