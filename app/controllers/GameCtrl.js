@@ -70,6 +70,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
+              console.log(localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
                 $scope.gameState = {
                   question: false,
