@@ -7,6 +7,11 @@ body {
   font-family: 'DKCoolCrayon.ttf', Fallback, sans-serif;
 }
 
+.home-container {
+  display: flex;
+  justify-content: center;
+}
+
 .abc-title {
   padding-top: 20px;
 }

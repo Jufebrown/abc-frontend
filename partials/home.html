@@ -1,15 +1,19 @@
-<div class="container abc-title">
-  <h1 class="aidans">Aidan's</h1>
-  <h1 class="beastial">Bestial</h1>
-  <h1 class="companions">Companions</h1>
-</div>
+<div class="home-container">
+  <div>
+    <div class="container abc-title">
+      <h1 class="aidans">Aidan's</h1>
+      <h1 class="beastial">Bestial</h1>
+      <h1 class="companions">Companions</h1>
+    </div>
 
-<div ng-if="!isLoggedIn" class="container">
-  <a class="waves-effect waves-light btn-large green" href="/#!/login">Login</a>
-  <a class="waves-effect waves-light btn-large blue" href="/#!/register">Register</a>
-</div>
+    <div ng-if="!isLoggedIn" class="container">
+      <a class="waves-effect waves-light btn-large green" href="/#!/login">Login</a>
+      <a class="waves-effect waves-light btn-large blue" href="/#!/register">Register</a>
+    </div>
 
-<div ng-if="isLoggedIn" class="container">
-  <h4>welcome <a href="#" ng-click="logout()">{{username}}</a></h4>
-  <a class="waves-effect waves-green btn-large btn-flat" ng-click="newGame()">Play</a>
+    <div ng-if="isLoggedIn" class="container">
+      <h4>welcome <a href="#" ng-click="logout()">{{username}}</a></h4>
+      <a class="waves-effect waves-green btn-large btn-flat" ng-click="newGame()">Play</a>
+    </div>
+  </div>
 </div>
