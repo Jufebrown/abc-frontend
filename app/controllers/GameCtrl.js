@@ -1,27 +1,29 @@
 `use strict`
 
-app.controller('GameCtrl', function($scope, $location, gameFactory) {
+app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
 
-  $scope.gameState ={
+  $scope.gameState = {
     question: true,
     thinking: false,
     correct: false,
-    incorrect: false
+    incorrect: false,
+    gameOver: false
   }
 
   localStorage.questionCount++
 
-  $scope.
+  $scope.questionNumber = localStorage.questionCount
   $scope.dbNull = false
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
 
   $scope.checkAnimal = function() {
-    $scope.gameState ={
+    $scope.gameState = {
       question: false,
       thinking: true,
       correct: false,
-      incorrect: false
+      incorrect: false,
+      gameOver: false
     }
     console.log('$scope.questionLetter', $scope.questionLetter)
     if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
@@ -32,10 +34,43 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
           $scope.dbNull = true
           gameFactory.searchSpeciesApi($scope.answer)
           .then(({data}) => {
+            console.log('api data', data.results)
             if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
-              gameFactory.correctAnswer(answer)
+              $scope.gameState = {
+                question: false,
+                thinking: false,
+                correct: true,
+                incorrect: false,
+                gameOver: false
+              }
+            } else {
+              $scope.gameState = {
+                question: false,
+                thinking: false,
+                correct: false,
+                incorrect: true,
+                gameOver: false
+              }
+              localStorage.incorrectAnswerCount++
+              if(gameFactory.checkGameOver()) {
+                $scope.gameState = {
+                  question: false,
+                  thinking: false,
+                  correct: false,
+                  incorrect: false,
+                  gameOver: true
+                }
+              }
             }
           })
+        } else {
+          $scope.gameState = {
+            question: false,
+            thinking: false,
+            correct: true,
+            incorrect: false,
+            gameOver: false
+          }
         }
       })
       .catch((err) => {
