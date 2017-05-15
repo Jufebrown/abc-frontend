@@ -78,4 +78,14 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
       })
     }
   }
+
+  $scope.correctNext = () => {
+    localStorage.correctAnswerCount++
+    $route.reload()
+  }
+
+  $scope.incorrectNext = () => {
+    $route.reload()
+  }
+
 })
