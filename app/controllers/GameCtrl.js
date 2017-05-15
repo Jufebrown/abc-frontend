@@ -38,7 +38,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         thinking: true,
         correct: false,
         incorrect: false,
-        gameOver: false
+        gameOver: false,
+        wrongLetter: false
       }
     console.log('$scope.questionLetter', $scope.questionLetter)
     if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
@@ -56,7 +57,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 thinking: false,
                 correct: true,
                 incorrect: false,
-                gameOver: false
+                gameOver: false,
+                wrongLetter: false
               }
             } else {
               $scope.gameState = {
@@ -64,7 +66,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 thinking: false,
                 correct: false,
                 incorrect: true,
-                gameOver: false
+                gameOver: false,
+                wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
               if(gameFactory.checkGameOver()) {
@@ -73,7 +76,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                   thinking: false,
                   correct: false,
                   incorrect: false,
-                  gameOver: true
+                  gameOver: true,
+                  wrongLetter: false
                 }
               }
             }
@@ -84,13 +88,23 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
             thinking: false,
             correct: true,
             incorrect: false,
-            gameOver: false
+            gameOver: false,
+            wrongLetter: false
           }
         }
       })
       .catch((err) => {
         console.log(err)
       })
+    } else {
+      $scope.gameState = {
+        question: false,
+        thinking: false,
+        correct: false,
+        incorrect: false,
+        gameOver: false,
+        wrongLetter: true
+      }
     }
   }
 
