@@ -6,3 +6,23 @@
 body {
   font-family: 'DKCoolCrayon.ttf', Fallback, sans-serif;
 }
+
+.abc-title {
+  padding-top: 20px;
+}
+
+.abc-title h1::first-letter {
+  font-size: 2em;
+}
+
+.aidans::first-letter {
+  color: blue;
+}
+
+.beastial::first-letter {
+  color: #f4e842;
+}
+
+.companions::first-letter {
+  color: red;
+}
