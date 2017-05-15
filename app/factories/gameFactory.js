@@ -18,22 +18,27 @@ app.factory('gameFactory', function($http, $q) {
       if (data.length > 0) {
         // loops through data objects
         for (var i = 0; i < data.length; i++) {
-          // checks to see if there are any vernacularNames
-          if (data[i].vernacularNames > 0) {
-            for (var j = 0; j < data[i].vernacularNames.length; j++) {
-              // checks to see if vernacularName is the same as the answer
-              if(data[i].vernacularNames[j].vernacularName === answer) {
-                // checks to see if there is a kingdom key
-                if (data[i].kingdom) {
-                  // checks to see if kingdom is correct to make the creature an animal
-                  if (data[i].kingdom === 'animalia' || 'metazoa') {
-                    return true
-                  } else {
-                    return false
+          // checks to see if there are any vernacular names or if there is a canonical name
+          if (data[i].vernacularNames > 0 || data.canonicalName) {
+            // checks to see if canonical name is the same as the answer
+            if (data.canonicalName.toLowerCase() === answer.toLowerCase()) {
+              // checks to see if it's in the animal kingdom
+              if (data[i].kingdom === 'animalia' || 'metazoa') {
+                  return true
+              } else {
+                // loops through vernacular names
+                for (var j = 0; j < data[i].vernacularNames.length; j++) {
+                  // checks to see if vernacularName is the same as the answer
+                  if(data[i].vernacularNames[j].vernacularName.toLowerCase() === answer.toLowerCase()) {
+                    // checks to see if there is a kingdom key
+                    if (data[i].kingdom) {
+                      // checks to see if kingdom is correct to make the creature an animal
+                      if (data[i].kingdom === 'animalia' || 'metazoa') {
+                        return true
+                      }
+                    }
                   }
                 }
-              } else {
-                return false
               }
             }
           }
