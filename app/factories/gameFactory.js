@@ -4,6 +4,20 @@ app.factory('gameFactory', function($http, $q) {
 
   return {
 
+    newGame: () => {
+      return $http({
+        method: 'POST',
+        url: `http://localhost:3000/api/v1/games/new`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        }
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    },
+
     getRandomLetter: () => String.fromCharCode(97 + Math.floor(Math.random() * 26)).toUpperCase(),
 
     checkStartLetter: (answer, questionLetter) => {
