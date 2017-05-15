@@ -26,3 +26,20 @@ body {
 .companions::first-letter {
   color: red;
 }
+
+.hello {
+  color: blue;
+}
+
+.superlative {
+  font-size: 2em;
+  color: #3ce500;
+}
+
+.question {
+  font-size: 1.5em;
+}
+
+.game-over {
+  color: red;
+}
