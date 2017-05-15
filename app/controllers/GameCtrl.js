@@ -12,10 +12,10 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   localStorage.questionCount++
-  console.log('questionCount', localStorage.questionCount)
-  console.log('correctAnswerCount', localStorage.correctAnswerCount)
+  // console.log('questionCount', localStorage.questionCount)
+  // console.log('correctAnswerCount', localStorage.correctAnswerCount)
   localStorage.incorrectAnswerCount = localStorage.questionCount - (localStorage.correctAnswerCount + 1)
-  console.log('incorrectAnswerCount',localStorage.incorrectAnswerCount)
+  // console.log('incorrectAnswerCount',localStorage.incorrectAnswerCount)
   if(gameFactory.checkGameOver()) {
     $scope.gameState = {
       question: false,
@@ -41,16 +41,16 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         gameOver: false,
         wrongLetter: false
       }
-    console.log('$scope.questionLetter', $scope.questionLetter)
+    // console.log('$scope.questionLetter', $scope.questionLetter)
     if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
       gameFactory.checkAnswer($scope.answer)
       .then(function(response) {
-        console.log('response from abc', response.data)
+        // console.log('response from abc', response.data)
         if (response.data === null) {
           $scope.dbNull = true
           gameFactory.searchSpeciesApi($scope.answer)
           .then(({data}) => {
-            console.log('api data', data.results)
+            // console.log('api data', data.results)
             if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
               $scope.gameState = {
                 question: false,
@@ -94,7 +94,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         }
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
       })
     } else {
       $scope.gameState = {
