@@ -25,7 +25,7 @@
   <div ng-if="gameState.incorrect">
     <p>anywhere.</p>
   </div>
-  <div ng-if="gameState.correct">
+  <div ng-if="gameState.correct" class="superlative">
     <p>is an animal!</p>
   </div>
   <button ng-if="gameState.correct" type="button" class="btn btn-green" ng-click="correctNext()">Next Question</button>
