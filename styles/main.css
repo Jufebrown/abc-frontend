@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'DKCoolCrayon.ttf';
+  src: url('/app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
+}
+
+body {
+  font-family: 'DKCoolCrayon.ttf', Fallback, sans-serif;
+}
