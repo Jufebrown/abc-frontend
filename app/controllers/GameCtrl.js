@@ -9,8 +9,11 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
     incorrect: false
   }
 
-  $scope.username = localStorage.getItem('username')
+  localStorage.questionCount++
 
+  $scope.
+  $scope.dbNull = false
+  $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
 
   $scope.checkAnimal = function() {
