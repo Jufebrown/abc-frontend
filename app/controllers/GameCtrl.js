@@ -12,10 +12,10 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   localStorage.questionCount++
-  // console.log('questionCount', localStorage.questionCount)
-  // console.log('correctAnswerCount', localStorage.correctAnswerCount)
-  localStorage.incorrectAnswerCount = localStorage.questionCount - (localStorage.correctAnswerCount + 1)
-  // console.log('incorrectAnswerCount',localStorage.incorrectAnswerCount)
+  console.log('questionCount', parseInt(localStorage.questionCount))
+  console.log('correctAnswerCount', localStorage.correctAnswerCount)
+  localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
+  console.log('incorrectAnswerCount', localStorage.incorrectAnswerCount)
   if(gameFactory.checkGameOver()) {
     $scope.gameState = {
       question: false,
@@ -70,7 +70,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
-              console.log(localStorage.incorrectAnswerCount)
+              console.log('incorrectAnswerCount after wrong answer',localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
                 $scope.gameState = {
                   question: false,
