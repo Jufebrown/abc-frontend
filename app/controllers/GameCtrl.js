@@ -88,4 +88,15 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     $route.reload()
   }
 
+  $scope.newGame = () => {
+    localStorage.questionCount = 0
+    localStorage.correctAnswerCount = 0
+    localStorage.incorrectAnswerCount = 0
+    // gameFactory.newGame()
+    // .then((res) => {
+    //   console.log('res', res)
+    // })
+    $route.reload()
+  }
+
 })
