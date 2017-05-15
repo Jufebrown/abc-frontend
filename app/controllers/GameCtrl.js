@@ -129,4 +129,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     $route.reload()
   }
 
+  $scope.quit = () => {
+    $location.url('/')
+  }
+
 })
