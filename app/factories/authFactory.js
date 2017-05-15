@@ -1,6 +1,6 @@
-app.factory('authFactory', function($http) {
+app.factory('authFactory', function($http, $q) {
 
-  const baseURL = 'http://localhost:3000/api/v1/auth/';
+  const baseURL = 'http://localhost:3000/api/v1/auth/'
 
   return {
     // registers an new user with username and password
@@ -42,13 +42,13 @@ app.factory('authFactory', function($http) {
     },
 
     authenticateRoute : function() {
-        if(localStorage.isLoggedIn){
-            //If authenticated, return anything you want, probably a user object
-            return true;
-        } else {
-            //Else send a rejection
-            return $q.reject('Not Authenticated');
-        }
+      if(localStorage.isLoggedIn === 'true'){
+        //If authenticated, return anything you want, probably a user object
+        return true;
+      } else {
+        //Else send a rejection
+        return $q.reject('Not Authenticated')
+      }
     }
 
   }

@@ -21,9 +21,9 @@ app.config(function($routeProvider) {
     .when('/game', {
       templateUrl: 'partials/game.html',
       controller: 'GameCtrl',
-      resolve : {
+      resolve: {
         //This function is injected with the AuthService where you'll put your authentication logic
-        'auth' : (authFactory) => {
+        'auth': function(authFactory) {
           return authFactory.authenticateRoute()
         }
       }
@@ -36,7 +36,7 @@ app.run(function($rootScope, $location){
   //If the route change failed due to authentication error, redirect them out
   $rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
     if(rejection === 'Not Authenticated'){
-      $location.path('/');
+      $location.url('/')
     }
   })
 })
