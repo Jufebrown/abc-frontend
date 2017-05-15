@@ -92,5 +92,13 @@ app.factory('gameFactory', function($http, $q) {
       })
     },
 
+    checkGameOver: () => {
+      if(localStorage.incorrectAnswerCount >= 3) {
+        return true
+      } else {
+        return false
+      }
+    }
+
   }
 })
