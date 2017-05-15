@@ -29,10 +29,12 @@ app.controller('GameCtrl', function($scope, $location, gameFactory) {
       .then(function(response) {
         console.log('response from abc', response.data)
         if (response.data === null) {
+          $scope.dbNull = true
           gameFactory.searchSpeciesApi($scope.answer)
           .then(({data}) => {
-            console.log('res from species', data.results)
-
+            if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
+              gameFactory.correctAnswer(answer)
+            }
           })
         }
       })
