@@ -43,7 +43,8 @@ app.factory('gameFactory', function($http, $q) {
               // checks to see if it's in the animal kingdom
               if (data[i].kingdom) {
                 // checks to see if kingdom is correct to make the creature an animal
-                if (data[i].kingdom.toLowerCase() === 'animalia' || 'metazoa') {
+                if ((data[i].kingdom.toLowerCase() === 'animalia') || (data[i].kingdom.toLowerCase() === 'metazoa')) {
+                  console.log('animalia or metazoa')
                   return true
                 }
               }
@@ -60,12 +61,13 @@ app.factory('gameFactory', function($http, $q) {
                 // checks to see if there is a kingdom key
                 if (data[i].kingdom) {
                   // checks to see if kingdom is correct to make the creature an animal
-                  if (data[i].kingdom.toLowerCase() === 'animalia' || 'metazoa') {
+                  if ((data[i].kingdom.toLowerCase() === 'animalia') || (data[i].kingdom.toLowerCase() === 'metazoa')) {
+                    console.log('animalia or metazoa')
                     return true
                   }
-                } else {
-                  //TODO: logic for no kingdom when vernacular name matches
                 }
+                //   //TODO: logic for no kingdom when vernacular name matches
+                // }
               }
             }
           }
