@@ -1,9 +1,9 @@
 <div class="container">
-  <h2>Hello {{username}}!</h2>
+  <h2 class="hello">Hello {{username}}!</h2>
   <div ng-if="gameState.question" class="question">
     <p>{{questionNumber}}. Can you tell me an animal that begins with "{{questionLetter}}"?</p>
   </div>
-  <div ng-if="gameState.correct">
+  <div ng-if="gameState.correct" class="superlative">
     <p>Very Good!</p>
   </div>
   <div ng-if="gameState.incorrect">
@@ -12,8 +12,8 @@
   <div ng-if="gameState.wrongLetter">
     <p>Silly!</p>
   </div>
-  <div ng-if="gameState.gameOver">
-    <h1>Game Over</h1>
+  <div ng-if="gameState.gameOver" class="game-over">
+    <h3>Game Over</h3>
   </div>
   <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="checkAnimal()" autocomplete="off">
     <input type="text" class="form-control" id="answer" placeholder="animal" ng-model="answer" required autofocus>
