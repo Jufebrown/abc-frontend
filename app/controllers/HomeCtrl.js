@@ -1,9 +1,6 @@
 `use strict`
 
-app.controller('HomeCtrl', function($scope, $location, authFactory) {
-
-  localStorage.questionCount = 0
-  localStorage.correctAnswerCount = 0
+app.controller('HomeCtrl', function($scope, $location, authFactory, gameFactory) {
 
   $scope.authStatus = () => {
     $scope.isLoggedIn = false
