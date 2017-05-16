@@ -82,7 +82,7 @@ app.factory('gameFactory', function($http, $q) {
     },
 
     searchSpeciesApi: function(animal) {
-      let speciesUrl = `http://api.gbif.org/v1/species/search?q=${animal}&rank=GENUS`
+      let speciesUrl = `https://api.gbif.org/v1/species/search?q=${animal}&rank=GENUS`
       console.log('speciesUrl', speciesUrl)
       return $http.get(speciesUrl)
     },
