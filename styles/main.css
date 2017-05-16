@@ -9,6 +9,7 @@ body {
 }
 
 .home-container {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -41,6 +42,12 @@ body {
 
 .companions::first-letter {
   color: red;
+}
+
+.top-right {
+ position: absolute;
+ top: 10px;
+ right: 15px;
 }
 
 .other-auth-option {

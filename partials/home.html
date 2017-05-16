@@ -11,9 +11,10 @@
       <a class="waves-effect waves-light btn-large blue" href="/#!/register">Register</a>
     </div>
 
+    <h7 ng-if="isLoggedIn" class="top-right">welcome <a href="#" ng-click="logout()">{{username}}</a></h7>
+
     <div ng-if="isLoggedIn" class="container">
-      <h5>welcome <a href="#" ng-click="logout()">{{username}}</a></h5>
-      <a class="waves-effect waves-green btn-large btn-flat" ng-click="newGame()">Play</a>
+      <a class="waves-effect waves-green btn-large btn-flat" ng-click="newGame()">Play Game</a>
     </div>
   </div>
 </div>
