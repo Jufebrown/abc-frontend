@@ -90,7 +90,7 @@ app.factory('gameFactory', function($http, $q) {
     checkAnswer: function(answer) {
       return $http({
         method: 'GET',
-        url: `http://localhost:3000/api/v1/word/${answer}`,
+        url: `https://localhost:3000/api/v1/word/${answer}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
