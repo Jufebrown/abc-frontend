@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'DKCoolCrayon.ttf';
+  src: url('/app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
+}
+
+body {
+  font-family: 'DKCoolCrayon.ttf', Fallback, sans-serif;
+  color: #3a2000;
+}
+
+.home-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.home-column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.abc-title {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.abc-title h1::first-letter {
+  font-size: 1.75em;
+}
+
+.aidans::first-letter {
+  color: blue;
+}
+
+.beastial::first-letter {
+  color: #f4e842;
+}
+
+.companions::first-letter {
+  color: red;
+}
+
+.top-right {
+ position: absolute;
+ top: 10px;
+ right: 15px;
+}
+
+/* .menu-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+} */
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-item-container {
+  position: relative;
+}
+
+.menu-item {
+  padding-left: 35px;
+  font-size: 1.5em;
+}
+
+.fish-pointer {
+  position: absolute;
+  left: 0;
+  top: .35rem;
+  height: 1rem;
+}
+
+.other-auth-option {
+  padding-top: 5em;
+}
+
+.hello {
+  color: blue;
+}
+
+.superlative {
+  font-size: 1.5em;
+  color: #3ce500;
+}
+
+.question {
+  font-size: 1.5em;
+}
+
+.game input {
+  font-size: 3em;
+  height: 1.5em;
+}
+
+.game-over {
+  color: red;
+}
+
+.red-button {
+  background-color: red;
+}
+
+.green-button {
+  background-color: green;
+}

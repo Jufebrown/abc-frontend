@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aidan's Beastial Companions</title>
+  <link rel="icon" href="app/assets/images/favicon.png" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="bower_components/materialize/dist/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body ng-app="ABC">
+
+  <div ng-view></div>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/materialize/dist/js/materialize.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+
+  <script src="app/app.js"></script>
+  <script src="app/controllers/HomeCtrl.js"></script>
+  <script src="app/controllers/LoginCtrl.js"></script>
+  <script src="app/controllers/RegisterCtrl.js"></script>
+  <script src="app/factories/authFactory.js"></script>
+  <script src="app/controllers/GameCtrl.js"></script>
+  <script src="app/factories/gameFactory.js"></script>
+
+</body>
+</html>
