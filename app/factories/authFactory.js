@@ -1,6 +1,6 @@
 app.factory('authFactory', function($http, $q) {
 
-  const baseURL = 'http://localhost:3000/api/v1/auth/'
+  const baseURL = 'https://warm-harbor-25906.herokuapp.com/api/v1/auth/'
 
   return {
     // registers an new user with username and password
