@@ -2,7 +2,7 @@
 ###A primer game for my son Aidan to learn animal names
 
 ----
-##Links
+## Links
 
 This project is deployed on github pages at:
 [https://jufebrown.github.io/abc-frontend](https://jufebrown.github.io/abc-frontend)
@@ -14,7 +14,7 @@ The back-end api is deployed to heroku here:
 [https://warm-harbor-25906.herokuapp.com/api/v1](https://warm-harbor-25906.herokuapp.com/api/v1)
 
 ----
-##About
+## About
 
 ABC is a simple game that asks the user to name an animal that starts with a randomly given letter.
 
@@ -23,15 +23,15 @@ The game then takes the answer and checks to see if it starts with the given let
 Authentication is handled with JSON web tokens. A user token is generated on login or registration and is sent with every request to the back-end api.
 
 ----
-##Moqup
+## Moqup
 ![alt text](app/assets/images/moqup.png "abc moqup screenshot")
 
 ----
-##Trello
+## Trello
 [https://trello.com/b/5EZ4dsnZ/back-end-capstone](https://trello.com/b/5EZ4dsnZ/back-end-capstone)
 
 ----
-##Future
+## Future
 
 This is a short list of future planned features:
 
@@ -51,7 +51,7 @@ This is a short list of future planned features:
 * Animations and cosmetic touch-ups
 
 ----
-##Resources
+## Resources
 
 Great tutorial for using JSON web tokens:
 [http://mherman.org/blog/2017/01/05/token-based-authentication-with-angular/#.WRtbfmTyuHo](http://mherman.org/blog/2017/01/05/token-based-authentication-with-angular/#.WRtbfmTyuHo)
