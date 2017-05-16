@@ -1,5 +1,5 @@
 # [Aidan's Beastial Companions (abc-frontend)](https://jufebrown.github.io/abc-frontend)
-###A primer game for my son Aidan to learn animal names
+### A primer game for my son Aidan to learn animal names
 
 ----
 ## Links
