@@ -91,8 +91,8 @@ app.factory('gameFactory', function($http, $q) {
         method: 'GET',
         url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token
+          'Content-Type': "application/json",
+          Authorization: "Bearer " + token
         }
       })
       .catch((err) => {
