@@ -12,10 +12,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   localStorage.questionCount++
-  // console.log('questionCount', localStorage.questionCount)
-  // console.log('correctAnswerCount', localStorage.correctAnswerCount)
-  localStorage.incorrectAnswerCount = localStorage.questionCount - (localStorage.correctAnswerCount + 1)
-  // console.log('incorrectAnswerCount',localStorage.incorrectAnswerCount)
+  localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
   if(gameFactory.checkGameOver()) {
     $scope.gameState = {
       question: false,
@@ -28,6 +25,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   $scope.questionNumber = localStorage.questionCount
+  $scope.correctAnswerCount = localStorage.correctAnswerCount
   $scope.dbNull = false
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
@@ -70,6 +68,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
+              console.log('incorrectAnswerCount after wrong answer',localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
                 $scope.gameState = {
                   question: false,
@@ -126,6 +125,10 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     //   console.log('res', res)
     // })
     $route.reload()
+  }
+
+  $scope.quit = () => {
+    $location.url('/')
   }
 
 })
