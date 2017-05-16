@@ -15,8 +15,6 @@ app.controller('HomeCtrl', function($scope, $location, authFactory, gameFactory)
         $scope.isLoggedIn = true
         $scope.username = localStorage.username
         localStorage.setItem('isLoggedIn', true)
-        let tempAnimal = "shark"
-        gameFactory.checkAnswer(tempAnimal)
       })
       .catch((err) => {
         console.log(err)

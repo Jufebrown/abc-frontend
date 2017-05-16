@@ -1,4 +1,4 @@
-app.factory('gameFactory', function($http, $q) {
+app.factory('gameFactory', function($http, $q, $route) {
 
   const token = localStorage.token
 
@@ -97,7 +97,10 @@ app.factory('gameFactory', function($http, $q) {
       })
       .catch((err) => {
         console.log(err)
-        return null
+        if(err.status === 500) {
+          localStorage.questionCount--
+          $route.reload()
+        }
       })
     },
 
