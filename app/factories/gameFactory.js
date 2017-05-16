@@ -1,4 +1,4 @@
-app.factory('gameFactory', function($http, $q, $route) {
+app.factory('gameFactory', function($http, $q) {
 
   const token = localStorage.token
 
