@@ -98,7 +98,6 @@ app.factory('gameFactory', function($http, $q) {
       .catch((err) => {
         console.log(err)
         return null
-        }
       })
     },
 
