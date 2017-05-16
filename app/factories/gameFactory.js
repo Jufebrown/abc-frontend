@@ -7,7 +7,7 @@ app.factory('gameFactory', function($http, $q) {
     newGame: () => {
       return $http({
         method: 'POST',
-        url: `http://localhost:3000/api/v1/games/new`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/new`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -82,15 +82,14 @@ app.factory('gameFactory', function($http, $q) {
     },
 
     searchSpeciesApi: function(animal) {
-      let speciesUrl = `http://api.gbif.org/v1/species/search?q=${animal}&rank=GENUS`
-      console.log('speciesUrl', speciesUrl)
+      let speciesUrl = `https://api.gbif.org/v1/species/search?q=${animal}&rank=GENUS`
       return $http.get(speciesUrl)
     },
 
     checkAnswer: function(answer) {
       return $http({
         method: 'GET',
-        url: `https://localhost:3000/api/v1/word/${answer}`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -98,6 +97,7 @@ app.factory('gameFactory', function($http, $q) {
       })
       .catch((err) => {
         console.log(err)
+        return null
       })
     },
 
