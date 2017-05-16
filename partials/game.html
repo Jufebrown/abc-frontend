@@ -35,8 +35,8 @@
     <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times.</p>
   </div>
   <div ng-if="gameState.gameOver">
-    <button type="button" class="btn btn-large btn-green" ng-click="newGame()">Play Again</button>
-    <button ng-if="gameState.gameOver" type="button" class="btn btn-large btn-red" ng-click="quit()">Main Menu</button>
+    <button type="button" class="btn btn-large green-button" ng-click="newGame()">Play Again</button>
+    <button ng-if="gameState.gameOver" type="button" class="btn btn-large red-button" ng-click="quit()">Main Menu</button>
   </div>
 
 </div>

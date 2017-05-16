@@ -68,3 +68,11 @@ body {
 .game-over {
   color: red;
 }
+
+.red-button {
+  background-color: red;
+}
+
+.green-button {
+  background-color: green;
+}
