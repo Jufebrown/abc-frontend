@@ -98,7 +98,7 @@ app.factory('gameFactory', function($http, $q) {
       })
       .catch((err) => {
         console.log(err)
-        if(err.500) {
+        if(err.status === 500) {
           console.log('token after error', localStorage.token)
         }
       })
