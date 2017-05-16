@@ -32,7 +32,7 @@
   <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large btn-red" ng-click="incorrectNext()">Next Question</button>
 
   <div ng-if="gameState.gameOver">
-    <p>Bummer! You've missed 3 questions.</p>
+    <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times.</p>
   </div>
   <div ng-if="gameState.gameOver">
     <button type="button" class="btn btn-large btn-green" ng-click="newGame()">Play Again</button>
