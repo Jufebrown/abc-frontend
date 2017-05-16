@@ -7,7 +7,7 @@ app.factory('gameFactory', function($http, $q) {
     newGame: () => {
       return $http({
         method: 'POST',
-        url: `http://localhost:3000/api/v1/games/new`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/new`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -90,7 +90,7 @@ app.factory('gameFactory', function($http, $q) {
     checkAnswer: function(answer) {
       return $http({
         method: 'GET',
-        url: `http://localhost:3000/api/v1/word/${answer}`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
