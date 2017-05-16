@@ -29,7 +29,7 @@ body {
 }
 
 .abc-title h1::first-letter {
-  font-size: 2em;
+  font-size: 1.75em;
 }
 
 .aidans::first-letter {
@@ -48,6 +48,34 @@ body {
  position: absolute;
  top: 10px;
  right: 15px;
+}
+
+/* .menu-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+} */
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-item-container {
+  position: relative;
+}
+
+.menu-item {
+  padding-left: 35px;
+  font-size: 1.5em;
+}
+
+.fish-pointer {
+  position: absolute;
+  left: 0;
+  top: .35rem;
+  height: 1rem;
 }
 
 .other-auth-option {

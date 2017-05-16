@@ -2,6 +2,8 @@
 
 app.controller('HomeCtrl', function($scope, $location, authFactory, gameFactory) {
 
+  $scope.show="false";
+
   $scope.authStatus = () => {
     $scope.isLoggedIn = false
     localStorage.setItem('isLoggedIn', false)
