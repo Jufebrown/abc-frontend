@@ -12,10 +12,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   localStorage.questionCount++
-  console.log('questionCount', parseInt(localStorage.questionCount))
-  console.log('correctAnswerCount', localStorage.correctAnswerCount)
   localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
-  console.log('incorrectAnswerCount', localStorage.incorrectAnswerCount)
   if(gameFactory.checkGameOver()) {
     $scope.gameState = {
       question: false,
