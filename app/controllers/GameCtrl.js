@@ -25,6 +25,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   }
 
   $scope.questionNumber = localStorage.questionCount
+  $scope.correctAnswerCount = localStorage.correctAnswerCount
   $scope.dbNull = false
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
