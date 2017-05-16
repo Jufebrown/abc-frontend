@@ -1,2 +1,2 @@
-# abc-frontend
-A primer game for Aidan to learn animal names
+# Aidan's Beastial Companions (abc-frontend)
+A primer game for my son Aidan to learn animal names
