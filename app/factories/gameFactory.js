@@ -87,6 +87,7 @@ app.factory('gameFactory', function($http, $q, $route) {
     },
 
     checkAnswer: function(answer) {
+      console.log('token before get word call', localStorage.token)
       return $http({
         method: 'GET',
         url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
@@ -97,9 +98,8 @@ app.factory('gameFactory', function($http, $q, $route) {
       })
       .catch((err) => {
         console.log(err)
-        if(err.status === 500) {
-          localStorage.questionCount--
-          $route.reload()
+        if(err.500) {
+          console.log('token after error', localStorage.token)
         }
       })
     },
