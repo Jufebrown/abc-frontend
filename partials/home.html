@@ -13,8 +13,13 @@
 
     <h7 ng-if="isLoggedIn" class="top-right">welcome <a href="#" ng-click="logout()">{{username}}</a></h7>
 
-    <div ng-if="isLoggedIn" class="container">
-      <a class="waves-effect waves-green btn-large btn-flat" ng-click="newGame()">Play Game</a>
+    <div ng-if="isLoggedIn" class="menu-container">
+      <div class="menu-item-container">
+        <img class="fish-pointer" src="app/assets/images/yellow-fish.png" alt="fish pointer" ng-hide="show">
+        <a class="waves-effect waves-yellow menu-item" ng-click="newGame()" ng-mouseover="show=!show" ng-mouseleave="show=!show">Play Game</a>
+      </div>
     </div>
+
+
   </div>
 </div>
