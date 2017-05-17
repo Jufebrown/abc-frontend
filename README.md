@@ -1,4 +1,4 @@
-# [Aidan's Beastial Companions (abc-frontend)](https://jufebrown.github.io/abc-frontend)
+# [Aidan's Bestial Companions (abc-frontend)](https://jufebrown.github.io/abc-frontend)
 ### A primer game for my son Aidan to learn animal names
 
 
@@ -42,7 +42,7 @@ This is a short list of future planned features:
   * Longest word used
 
 * Friends:
-  * An achievement/trophy system that awards beastial friends at specified milestones
+  * An achievement/trophy system that awards bestial friends at specified milestones
   * There will be a separate page to view friends
   *  Possibly add a point/currency system to allow user to purchase habitat items for friends
 
