@@ -1,10 +1,10 @@
 app.factory('gameFactory', function($http, $q) {
 
-  const token = localStorage.token
 
   return {
 
     newGame: () => {
+      const token = localStorage.token
       return $http({
         method: 'POST',
         url: `http://localhost:3000/api/v1/games/new`,
@@ -88,6 +88,7 @@ app.factory('gameFactory', function($http, $q) {
     },
 
     checkAnswer: function(answer) {
+      const token = localStorage.token
       return $http({
         method: 'GET',
         url: `http://localhost:3000/api/v1/word/${answer}`,
