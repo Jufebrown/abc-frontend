@@ -30,6 +30,15 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
 
+  $scope.getPic = () => {
+    if($scope.picPosition === left) {
+      let whichPicJson = 'leftpics.json'
+    } else {
+      let whichPicJson = 'rightpics.json'
+    }
+    gameFactory.getPicJson(whichPicJson)
+  }
+
   $scope.checkAnimal = function() {
       $scope.gameState = {
         question: false,
