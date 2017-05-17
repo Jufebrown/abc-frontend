@@ -12,11 +12,25 @@ body {
   position: relative;
 }
 
+.bat {
+  max-width: 25%;
+  position: fixed;
+  top: 0;
+  right: 15%;
+}
+
 .giraffe {
   max-width: 25%;
   position: fixed;
   top: 20px;
   left: 0;
+}
+
+.treefrog {
+  max-width: 20%;
+  position: fixed;
+  bottom: 0;
+  right: 5%;
 }
 
 .home-row-container {
