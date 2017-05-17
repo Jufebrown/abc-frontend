@@ -90,6 +90,18 @@ body {
   height: 1rem;
 }
 
+.auth-container {
+  position: relative;
+  width: 100%;
+}
+
+.backgroundFrog {
+  position: fixed;
+  bottom: 0;
+  max-width: 100%;
+  z-index: -5;
+}
+
 .other-auth-option {
   padding-top: 5em;
 }
