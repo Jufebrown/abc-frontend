@@ -1,10 +1,9 @@
 app.factory('gameFactory', function($http, $q) {
 
-  const token = localStorage.token
-
   return {
 
     newGame: () => {
+      const token = localStorage.token
       return $http({
         method: 'POST',
         url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/new`,
@@ -87,7 +86,7 @@ app.factory('gameFactory', function($http, $q) {
     },
 
     checkAnswer: function(answer) {
-      console.log('token before get word call', token)
+      const token = localStorage.token
       return $http({
         method: 'GET',
         url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
@@ -98,9 +97,6 @@ app.factory('gameFactory', function($http, $q) {
       })
       .catch((err) => {
         console.log(err)
-        if(err.status === 500) {
-          console.log('token after error', token)
-        }
       })
     },
 
