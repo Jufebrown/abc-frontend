@@ -12,13 +12,6 @@ body {
   position: relative;
 }
 
-.bat {
-  max-width: 25%;
-  position: fixed;
-  top: 0;
-  right: 15%;
-}
-
 .giraffe {
   max-width: 25%;
   position: fixed;
@@ -74,12 +67,6 @@ body {
  top: 10px;
  right: 15px;
 }
-
-/* .menu-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-} */
 
 .menu-container {
   display: flex;
