@@ -10,13 +10,20 @@ body {
 
 .home-container {
   position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
 }
 
 .giraffe {
-  max-width: 20%;
+  max-width: 25%;
+  position: fixed;
+  top: 20px;
+  left: 0;
+}
+
+.home-row-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .home-column-container {
