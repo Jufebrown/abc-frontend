@@ -1,7 +1,10 @@
+`use strict`
+
 app.factory('gameFactory', function($http, $q) {
 
   return {
 
+    // hits new game endpoint of server and adds a new game to db
     newGame: () => {
       const token = localStorage.token
       return $http({
@@ -17,8 +20,10 @@ app.factory('gameFactory', function($http, $q) {
       })
     },
 
+    // gets a random letter between a-z
     getRandomLetter: () => String.fromCharCode(97 + Math.floor(Math.random() * 26)).toUpperCase(),
 
+    // checks to see if 1st letter of word = letter asked for
     checkStartLetter: (answer, questionLetter) => {
       let compareWord = answer.toLowerCase()
       if(compareWord.charAt(0) === questionLetter) {
@@ -26,6 +31,7 @@ app.factory('gameFactory', function($http, $q) {
       }
     },
 
+    // function for parsing data returned from gbif
     analyzeSpeciesApiResults: (answer, data) => {
       console.log('data from analyze', data)
       // checks to see if any results were returned
@@ -49,6 +55,7 @@ app.factory('gameFactory', function($http, $q) {
               }
             }
           }
+          //checks to see if there are any vernacularNames
           if (data[i].vernacularNames.length > 0) {
             console.log('there is at least one vernacular name')
             // loops through vernacular names
@@ -80,11 +87,13 @@ app.factory('gameFactory', function($http, $q) {
       return false
     },
 
+    // makes call to gloabal biodiversity information facility
     searchSpeciesApi: function(animal) {
       let speciesUrl = `https://api.gbif.org/v1/species/search?q=${animal}&rank=GENUS`
       return $http.get(speciesUrl)
     },
 
+    //checks with back-end api to see if word is in db
     checkAnswer: function(answer) {
       const token = localStorage.token
       return $http({
@@ -100,6 +109,7 @@ app.factory('gameFactory', function($http, $q) {
       })
     },
 
+    // checks to see if the game should be over
     checkGameOver: () => {
       if(localStorage.incorrectAnswerCount >= 3) {
         return true
