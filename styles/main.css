@@ -1,3 +1,6 @@
+/*********************************
+Base Styles
+*********************************/
 @font-face {
   font-family: 'DKCoolCrayon.ttf';
   src: url('/app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
@@ -8,6 +11,18 @@ body {
   color: #3a2000;
 }
 
+.red-button {
+  background-color: red;
+}
+
+.green-button {
+  background-color: green;
+}
+
+
+/*********************************
+Main Menu Styles
+*********************************/
 .home-container {
   position: relative;
 }
@@ -90,6 +105,10 @@ body {
   height: 1rem;
 }
 
+
+/*********************************
+Auth Page Styles
+*********************************/
 .auth-container {
   position: relative;
   width: 100%;
@@ -106,6 +125,10 @@ body {
   padding-top: 5em;
 }
 
+
+/*********************************
+Game Page Styles
+*********************************/
 .hello {
   color: blue;
 }
@@ -126,12 +149,4 @@ body {
 
 .game-over {
   color: red;
-}
-
-.red-button {
-  background-color: red;
-}
-
-.green-button {
-  background-color: green;
 }
