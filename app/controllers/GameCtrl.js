@@ -13,15 +13,21 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
 
   localStorage.questionCount++
   localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
+
   if(gameFactory.checkGameOver()) {
-    $scope.gameState = {
-      question: false,
-      thinking: false,
-      correct: false,
-      incorrect: false,
-      gameOver: true,
-      wrongLetter: false
-    }
+    localStorage.questionCount--
+    gameFactory.updateGame()
+    .then(() => {
+      $scope.numberUnique = JSON.parse(localStorage.getItem('answers')).length
+      $scope.gameState = {
+        question: false,
+        thinking: false,
+        correct: false,
+        incorrect: false,
+        gameOver: true,
+        wrongLetter: false
+      }
+    })
   }
 
   $scope.questionNumber = localStorage.questionCount
@@ -29,6 +35,32 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   $scope.dbNull = false
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
+
+  $scope.getRandomImage = () => {
+    $scope.randomBinary = gameFactory.randomNum(0, 1)
+    // console.log('randomBinary', $scope.randomBinary)
+    let whichPicJson = ''
+    if($scope.randomBinary === 0) {
+      whichPicJson = 'leftpics.json'
+    } else {
+      whichPicJson = 'rightpics.json'
+    }
+    gameFactory.getPicJson(whichPicJson)
+    .then((data) => {
+      // console.log('data', data)
+      let picNum = gameFactory.randomNum(0, data.length)
+      // console.log('picNum', picNum)
+      $scope.randomImage = {src: '', style: '', alt: ''}
+      $scope.randomImage.src = data[picNum].src
+      $scope.randomImage.style = data[picNum].style
+      $scope.randomImage.alt = data[picNum].alt
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  $scope.getRandomImage()
 
   $scope.checkAnimal = function() {
       $scope.gameState = {
@@ -50,6 +82,11 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
           .then(({data}) => {
             // console.log('api data', data.results)
             if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
+              if($scope.dbNull === true) {
+                gameFactory.learnWord($scope.answer)
+              }
+              console.log('before updateUnique after api call')
+              gameFactory.updateUnique($scope.answer)
               $scope.gameState = {
                 question: false,
                 thinking: false,
@@ -68,20 +105,25 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
-              console.log('incorrectAnswerCount after wrong answer',localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
-                $scope.gameState = {
-                  question: false,
-                  thinking: false,
-                  correct: false,
-                  incorrect: false,
-                  gameOver: true,
-                  wrongLetter: false
-                }
+                gameFactory.updateGame()
+                $scope.numberUnique = JSON.parse(localStorage.getItem('answers')).length
+                .then(() => {
+                  $scope.gameState = {
+                    question: false,
+                    thinking: false,
+                    correct: false,
+                    incorrect: false,
+                    gameOver: true,
+                    wrongLetter: false
+                  }
+                })
               }
             }
           })
         } else {
+          console.log('in db')
+          gameFactory.updateUnique($scope.answer)
           $scope.gameState = {
             question: false,
             thinking: false,
@@ -93,7 +135,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         }
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       })
     } else {
       $scope.gameState = {
@@ -120,10 +162,14 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     localStorage.questionCount = 0
     localStorage.correctAnswerCount = 0
     localStorage.incorrectAnswerCount = 0
-    // gameFactory.newGame()
-    // .then((res) => {
-    //   console.log('res', res)
-    // })
+    localStorage.setItem('answers', [])
+    gameFactory.addNewGame()
+    .then((res) => {
+      localStorage.currentGame = res.data.id
+    })
+    .catch((err) => {
+      console.log(err)
+    })
     $route.reload()
   }
 

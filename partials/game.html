@@ -1,42 +1,47 @@
-<div class="container game">
-  <h2 class="hello">Hello {{username}}!</h2>
-  <div ng-if="gameState.question" class="question">
-    <p>{{questionNumber}}. Can you tell me an animal that begins with "{{questionLetter}}"?</p>
-  </div>
-  <div ng-if="gameState.correct" class="superlative">
-    <p>Very Good!</p>
-  </div>
-  <div ng-if="gameState.incorrect">
-    <p>Sorry. I couldn't find an animal named:</p>
-  </div>
-  <div ng-if="gameState.wrongLetter">
-    <p>Silly!</p>
-  </div>
-  <div ng-if="gameState.gameOver" class="game-over">
-    <h3>Game Over</h3>
-  </div>
-  <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="checkAnimal()" autocomplete="off">
-    <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" required autofocus>
-  <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default">Answer</button>
-  </form>
-  <div ng-if="gameState.wrongLetter">
-    <p>doesn't start with "{{questionLetter}}".</p>
-  </div>
-  <div ng-if="gameState.incorrect">
-    <p>anywhere.</p>
-  </div>
-  <div ng-if="gameState.correct" class="superlative">
-    <p>is an animal!</p>
-  </div>
-  <button ng-if="gameState.correct" type="button" class="btn btn-large btn-green" ng-click="correctNext()">Next Question</button>
-  <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large btn-red" ng-click="incorrectNext()">Next Question</button>
+<div class="game-container">
 
-  <div ng-if="gameState.gameOver">
-    <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times.</p>
-  </div>
-  <div ng-if="gameState.gameOver">
-    <button type="button" class="btn btn-large green-button" ng-click="newGame()">Play Again</button>
-    <button ng-if="gameState.gameOver" type="button" class="btn btn-large red-button" ng-click="quit()">Main Menu</button>
-  </div>
+  <img ng-src="{{randomImage.src}}" style="{{randomImage.style}}" alt="{{randomImage.alt}}">
 
+  <div class="container game">
+    <h2 class="hello">Hello {{username}}!</h2>
+    <div ng-if="gameState.question" class="question">
+      <p>{{questionNumber}}. Can you tell me an animal that begins with "{{questionLetter}}"?</p>
+    </div>
+    <div ng-if="gameState.correct" class="superlative">
+      <p>Very Good!</p>
+    </div>
+    <div ng-if="gameState.incorrect" class="incorrect">
+      <p>Sorry. I couldn't find an animal named:</p>
+    </div>
+    <div ng-if="gameState.wrongLetter" class="incorrect">
+      <p>Silly!</p>
+    </div>
+    <div ng-if="gameState.gameOver" class="game-over">
+      <h3>Game Over</h3>
+    </div>
+    <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="gameState.question && checkAnimal()" autocomplete="off">
+      <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" required autofocus>
+    <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default" ng-disabled="!gameState.question">Answer</button>
+    </form>
+    <div ng-if="gameState.wrongLetter" class="incorrect">
+      <p>doesn't start with "{{questionLetter}}".</p>
+    </div>
+    <div ng-if="gameState.incorrect" class="incorrect">
+      <p>anywhere.</p>
+    </div>
+    <div ng-if="gameState.correct" class="superlative">
+      <p>is an animal!</p>
+    </div>
+    <button ng-if="gameState.correct" type="button" class="btn btn-large btn-green" ng-click="correctNext()" ng-disabled="!gameState.correct">Next Question</button>
+    <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large btn-red" ng-click="incorrectNext()" ng-disabled="gameState.question || gameState.thinking">Next Question</button>
+
+    <div ng-if="gameState.gameOver" class="incorrect">
+      <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times and you used {{numberUnique}} unique words.</p>
+    </div>
+    <div ng-if="gameState.gameOver">
+      <button type="button" class="btn btn-large green-button" ng-click="newGame()">Play Again</button>
+      <button ng-if="gameState.gameOver" type="button" class="btn btn-large red-button" ng-click="quit()">Main Menu</button>
+    </div>
+
+  </div>
 </div>

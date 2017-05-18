@@ -5,7 +5,7 @@ app.factory('gameFactory', function($http, $q) {
   return {
 
     // hits new game endpoint of server and adds a new game to db
-    newGame: () => {
+    addNewGame: () => {
       const token = localStorage.token
       return $http({
         method: 'POST',
@@ -13,7 +13,8 @@ app.factory('gameFactory', function($http, $q) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
-        }
+        },
+        data: {number_asked: 1}
       })
       .catch((err) => {
         console.log('err', err)
@@ -109,12 +110,90 @@ app.factory('gameFactory', function($http, $q) {
       })
     },
 
+    getPicJson: (file) => {
+      return $http.get(file)
+      .then((data) => {
+        return data.data
+      })
+      .catch(function() {
+          console.log(`could not find ${file}`)
+      })
+    },
+
+    randomNum: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+
     // checks to see if the game should be over
+
     checkGameOver: () => {
       if(localStorage.incorrectAnswerCount >= 3) {
         return true
       } else {
         return false
+      }
+    },
+
+    updateGame: () => {
+      const token = localStorage.token
+      const gameID = parseInt(localStorage.currentGame)
+      const number_asked = parseInt(localStorage.questionCount)
+      const number_correct = parseInt(localStorage.correctAnswerCount)
+      const number_unique = JSON.parse(localStorage.getItem('answers')).length
+      return $http({
+        method: 'PATCH',
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/${gameID}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {number_asked, number_correct, number_unique}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    },
+
+    learnWord: (correct_word) => {
+      const token = localStorage.token
+      return $http({
+        method: 'POST',
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/words/new`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {correct_word}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    },
+
+    // function to update array of unique answers
+    updateUnique: (word) => {
+      let alreadyUsed = false
+      let tempArray = []
+      if(localStorage.answers) {
+        let storedAnswers = JSON.parse(localStorage.getItem('answers'))
+        for (var j = 0; j < storedAnswers.length; j++) {
+          tempArray.push(storedAnswers[j])
+        }
+      }
+      if(tempArray.length > 0) {
+        for (var i = 0; i < tempArray.length; i++) {
+          if(tempArray[i] === word) {
+            alreadyUsed = true
+          }
+        }
+      }
+      if(alreadyUsed === false) {
+        tempArray.push(word)
+        localStorage.setItem('answers', JSON.stringify(tempArray))
       }
     }
 
