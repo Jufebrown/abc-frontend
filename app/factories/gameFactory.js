@@ -136,7 +136,7 @@ app.factory('gameFactory', function($http, $q) {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
         },
-        data: {number_asked: number_asked, number_correct: number_correct}
+        data: {number_asked, number_correct, number_unique}
       })
       .then((res) => {
         console.log(res)
