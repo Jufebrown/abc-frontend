@@ -163,6 +163,29 @@ app.factory('gameFactory', function($http, $q) {
       .catch((err) => {
         console.log('err', err)
       })
+    },
+
+    // function to update array of unique answers
+    updateUnique: (word) => {
+      let alreadyUsed = false
+      let tempArray = []
+      if(localStorage.answers) {
+        let storedAnswers = JSON.parse(localStorage.getItem('answers'))
+        for (var j = 0; j < storedAnswers.length; j++) {
+          tempArray.push(storedAnswers[j])
+        }
+      }
+      if(tempArray.length > 0) {
+        for (var i = 0; i < tempArray.length; i++) {
+          if(tempArray[i] === word) {
+            alreadyUsed = true
+          }
+        }
+      }
+      if(alreadyUsed === false) {
+        tempArray.push(word)
+        localStorage.setItem('answers', JSON.stringify(tempArray))
+      }
     }
 
   }
