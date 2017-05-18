@@ -7,7 +7,7 @@ app.factory('gameFactory', function($http, $q) {
       const token = localStorage.token
       return $http({
         method: 'POST',
-        url: `http://localhost:3000/api/v1/games/new`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/new`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -92,7 +92,7 @@ app.factory('gameFactory', function($http, $q) {
       const token = localStorage.token
       return $http({
         method: 'GET',
-        url: `http://localhost:3000/api/v1/word/${answer}`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/word/${answer}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -131,7 +131,7 @@ app.factory('gameFactory', function($http, $q) {
       const number_unique = JSON.parse(localStorage.getItem('answers')).length
       return $http({
         method: 'PATCH',
-        url: `http://localhost:3000/api/v1/games/${gameID}`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/games/${gameID}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
@@ -150,7 +150,7 @@ app.factory('gameFactory', function($http, $q) {
       const token = localStorage.token
       return $http({
         method: 'POST',
-        url: `http://localhost:3000/api/v1/words/new`,
+        url: `https://warm-harbor-25906.herokuapp.com/api/v1/words/new`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
