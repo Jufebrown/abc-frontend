@@ -104,13 +104,15 @@ app.factory('gameFactory', function($http, $q) {
 
     getPicJson: (file) => {
       return $http.get(file)
-      .success(function(data) {
-        console.log('json', data)
+      .then((data) => {
+        return data.data
       })
-      .error(function() {
+      .catch(function() {
           console.log(`could not find ${file}`)
       })
     },
+
+    randomNum: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
 
     checkGameOver: () => {
       if(localStorage.incorrectAnswerCount >= 3) {
