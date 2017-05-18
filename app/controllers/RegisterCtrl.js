@@ -11,6 +11,7 @@ app.controller('RegisterCtrl', function($scope, $location, authFactory) {
     })
     .catch((err) => {
       console.log(err)
+      Materialize.toast('username already registered with different password', 3000, 'rounded toast')
     })
   }
 })
