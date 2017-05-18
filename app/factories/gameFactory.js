@@ -128,6 +128,7 @@ app.factory('gameFactory', function($http, $q) {
       const gameID = parseInt(localStorage.currentGame)
       const number_asked = parseInt(localStorage.questionCount)
       const number_correct = parseInt(localStorage.correctAnswerCount)
+      const number_unique = JSON.parse(localStorage.getItem('answers')).length
       return $http({
         method: 'PATCH',
         url: `http://localhost:3000/api/v1/games/${gameID}`,
