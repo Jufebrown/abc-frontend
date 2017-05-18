@@ -143,6 +143,25 @@ app.factory('gameFactory', function($http, $q) {
       .catch((err) => {
         console.log('err', err)
       })
+    },
+
+    learnWord: (correct_word) => {
+      const token = localStorage.token
+      return $http({
+        method: 'POST',
+        url: `http://localhost:3000/api/v1/words/new`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {correct_word}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
     }
 
   }

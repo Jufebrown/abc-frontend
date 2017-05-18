@@ -13,6 +13,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
 
   localStorage.questionCount++
   localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
+
   if(gameFactory.checkGameOver()) {
     localStorage.questionCount--
     gameFactory.updateGame()
@@ -80,6 +81,9 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
           .then(({data}) => {
             // console.log('api data', data.results)
             if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
+              if($scope.dbNull === true) {
+                gameFactory.learnWord($scope.answer)
+              }
               $scope.gameState = {
                 question: false,
                 thinking: false,
@@ -98,7 +102,6 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
                 wrongLetter: false
               }
               localStorage.incorrectAnswerCount++
-              console.log('incorrectAnswerCount after wrong answer',localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
                 gameFactory.updateGame()
                 .then(() => {
@@ -126,7 +129,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         }
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       })
     } else {
       $scope.gameState = {
@@ -153,6 +156,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     localStorage.questionCount = 0
     localStorage.correctAnswerCount = 0
     localStorage.incorrectAnswerCount = 0
+    localStorage.answers = []
     gameFactory.addNewGame()
     .then((res) => {
       localStorage.currentGame = res.data.id
