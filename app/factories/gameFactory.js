@@ -121,6 +121,28 @@ app.factory('gameFactory', function($http, $q) {
       } else {
         return false
       }
+    },
+
+    updateGame: () => {
+      const token = localStorage.token
+      const gameID = parseInt(localStorage.currentGame)
+      const number_asked = parseInt(localStorage.questionCount)
+      const number_correct = parseInt(localStorage.correctAnswerCount)
+      return $http({
+        method: 'PATCH',
+        url: `http://localhost:3000/api/v1/games/${gameID}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {number_asked: number_asked, number_correct: number_correct}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
     }
 
   }
