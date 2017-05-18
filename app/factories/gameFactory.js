@@ -3,7 +3,7 @@ app.factory('gameFactory', function($http, $q) {
 
   return {
 
-    newGame: () => {
+    addNewGame: () => {
       const token = localStorage.token
       return $http({
         method: 'POST',
@@ -11,7 +11,8 @@ app.factory('gameFactory', function($http, $q) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
-        }
+        },
+        data: {number_asked: 1}
       })
       .catch((err) => {
         console.log('err', err)
@@ -119,6 +120,71 @@ app.factory('gameFactory', function($http, $q) {
         return true
       } else {
         return false
+      }
+    },
+
+    updateGame: () => {
+      const token = localStorage.token
+      const gameID = parseInt(localStorage.currentGame)
+      const number_asked = parseInt(localStorage.questionCount)
+      const number_correct = parseInt(localStorage.correctAnswerCount)
+      const number_unique = JSON.parse(localStorage.getItem('answers')).length
+      return $http({
+        method: 'PATCH',
+        url: `http://localhost:3000/api/v1/games/${gameID}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {number_asked, number_correct, number_unique}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    },
+
+    learnWord: (correct_word) => {
+      const token = localStorage.token
+      return $http({
+        method: 'POST',
+        url: `http://localhost:3000/api/v1/words/new`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        data: {correct_word}
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    },
+
+    // function to update array of unique answers
+    updateUnique: (word) => {
+      let alreadyUsed = false
+      let tempArray = []
+      if(localStorage.answers) {
+        let storedAnswers = JSON.parse(localStorage.getItem('answers'))
+        for (var j = 0; j < storedAnswers.length; j++) {
+          tempArray.push(storedAnswers[j])
+        }
+      }
+      if(tempArray.length > 0) {
+        for (var i = 0; i < tempArray.length; i++) {
+          if(tempArray[i] === word) {
+            alreadyUsed = true
+          }
+        }
+      }
+      if(alreadyUsed === false) {
+        tempArray.push(word)
+        localStorage.setItem('answers', JSON.stringify(tempArray))
       }
     }
 

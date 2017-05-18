@@ -13,7 +13,7 @@
     <div ng-if="gameState.incorrect" class="incorrect">
       <p>Sorry. I couldn't find an animal named:</p>
     </div>
-    <div ng-if="gameState.wrongLetter">
+    <div ng-if="gameState.wrongLetter" class="incorrect">
       <p>Silly!</p>
     </div>
     <div ng-if="gameState.gameOver" class="game-over">
@@ -23,7 +23,7 @@
       <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" required autofocus>
     <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default" ng-disabled="!gameState.question">Answer</button>
     </form>
-    <div ng-if="gameState.wrongLetter">
+    <div ng-if="gameState.wrongLetter" class="incorrect">
       <p>doesn't start with "{{questionLetter}}".</p>
     </div>
     <div ng-if="gameState.incorrect" class="incorrect">
@@ -35,8 +35,8 @@
     <button ng-if="gameState.correct" type="button" class="btn btn-large btn-green" ng-click="correctNext()" ng-disabled="!gameState.correct">Next Question</button>
     <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large btn-red" ng-click="incorrectNext()" ng-disabled="gameState.question || gameState.thinking">Next Question</button>
 
-    <div ng-if="gameState.gameOver">
-      <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times.</p>
+    <div ng-if="gameState.gameOver" class="incorrect">
+      <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times and you used {{numberUnique}} unique words.</p>
     </div>
     <div ng-if="gameState.gameOver">
       <button type="button" class="btn btn-large green-button" ng-click="newGame()">Play Again</button>
