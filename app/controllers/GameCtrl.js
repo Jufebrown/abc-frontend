@@ -14,14 +14,18 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   localStorage.questionCount++
   localStorage.incorrectAnswerCount = parseInt(localStorage.questionCount) - (parseInt(localStorage.correctAnswerCount) + 1)
   if(gameFactory.checkGameOver()) {
-    $scope.gameState = {
-      question: false,
-      thinking: false,
-      correct: false,
-      incorrect: false,
-      gameOver: true,
-      wrongLetter: false
-    }
+    localStorage.questionCount--
+    gameFactory.updateGame()
+    .then(() => {
+      $scope.gameState = {
+        question: false,
+        thinking: false,
+        correct: false,
+        incorrect: false,
+        gameOver: true,
+        wrongLetter: false
+      }
+    })
   }
 
   $scope.questionNumber = localStorage.questionCount
