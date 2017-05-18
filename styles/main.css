@@ -3,7 +3,7 @@ Base Styles
 *********************************/
 @font-face {
   font-family: 'DKCoolCrayon.ttf';
-  src: url('/app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
+  src: url('../app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
 }
 
 body {
