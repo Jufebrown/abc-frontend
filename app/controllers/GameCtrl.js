@@ -18,6 +18,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     localStorage.questionCount--
     gameFactory.updateGame()
     .then(() => {
+      $scope.numberUnique = JSON.parse(localStorage.getItem('answers')).length
       $scope.gameState = {
         question: false,
         thinking: false,
@@ -104,6 +105,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
               localStorage.incorrectAnswerCount++
               if(gameFactory.checkGameOver()) {
                 gameFactory.updateGame()
+                $scope.numberUnique = JSON.parse(localStorage.getItem('answers')).length
                 .then(() => {
                   $scope.gameState = {
                     question: false,
