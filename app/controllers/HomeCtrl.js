@@ -26,10 +26,10 @@ app.controller('HomeCtrl', function($scope, $location, authFactory, gameFactory)
     localStorage.questionCount = 0
     localStorage.correctAnswerCount = 0
     localStorage.incorrectAnswerCount = 0
-    // gameFactory.newGame()
-    // .then((res) => {
-    //   console.log('res', res)
-    // })
+    gameFactory.addNewGame()
+    .then((res) => {
+      localStorage.currentGame = res.data.id
+    })
     $location.url('/game')
   }
 

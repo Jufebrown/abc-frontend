@@ -3,7 +3,7 @@ app.factory('gameFactory', function($http, $q) {
 
   return {
 
-    newGame: () => {
+    addNewGame: () => {
       const token = localStorage.token
       return $http({
         method: 'POST',
@@ -11,7 +11,8 @@ app.factory('gameFactory', function($http, $q) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token
-        }
+        },
+        data: {number_asked: 1}
       })
       .catch((err) => {
         console.log('err', err)
