@@ -162,7 +162,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
     localStorage.questionCount = 0
     localStorage.correctAnswerCount = 0
     localStorage.incorrectAnswerCount = 0
-    localStorage.answers = []
+    localStorage.setItem('answers', [])
     gameFactory.addNewGame()
     .then((res) => {
       localStorage.currentGame = res.data.id
