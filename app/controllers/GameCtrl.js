@@ -85,6 +85,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
               if($scope.dbNull === true) {
                 gameFactory.learnWord($scope.answer)
               }
+              console.log('before updateUnique after api call')
+              gameFactory.updateUnique($scope.answer)
               $scope.gameState = {
                 question: false,
                 thinking: false,
@@ -120,6 +122,8 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
             }
           })
         } else {
+          console.log('in db')
+          gameFactory.updateUnique($scope.answer)
           $scope.gameState = {
             question: false,
             thinking: false,
