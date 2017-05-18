@@ -19,9 +19,9 @@
     <div ng-if="gameState.gameOver" class="game-over">
       <h3>Game Over</h3>
     </div>
-    <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="checkAnimal()" autocomplete="off">
+    <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="gameState.question && checkAnimal()" autocomplete="off">
       <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" required autofocus>
-    <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default">Answer</button>
+    <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default" ng-disabled="!gameState.question">Answer</button>
     </form>
     <div ng-if="gameState.wrongLetter">
       <p>doesn't start with "{{questionLetter}}".</p>
