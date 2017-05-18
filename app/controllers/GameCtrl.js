@@ -100,14 +100,17 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
               localStorage.incorrectAnswerCount++
               console.log('incorrectAnswerCount after wrong answer',localStorage.incorrectAnswerCount)
               if(gameFactory.checkGameOver()) {
-                $scope.gameState = {
-                  question: false,
-                  thinking: false,
-                  correct: false,
-                  incorrect: false,
-                  gameOver: true,
-                  wrongLetter: false
-                }
+                gameFactory.updateGame()
+                .then(() => {
+                  $scope.gameState = {
+                    question: false,
+                    thinking: false,
+                    correct: false,
+                    incorrect: false,
+                    gameOver: true,
+                    wrongLetter: false
+                  }
+                })
               }
             }
           })
