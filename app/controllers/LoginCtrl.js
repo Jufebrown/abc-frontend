@@ -10,6 +10,7 @@ app.controller('LoginCtrl', function($scope, $location, authFactory) {
       $location.url('/')
     })
     .catch((err) => {
+      Materialize.toast('username or password not found', 3000, 'rounded toast')
       console.log(err)
     })
   }

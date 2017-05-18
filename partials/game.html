@@ -32,8 +32,8 @@
     <div ng-if="gameState.correct" class="superlative">
       <p>is an animal!</p>
     </div>
-    <button ng-if="gameState.correct" type="button" class="btn btn-large btn-green" ng-click="correctNext()" ng-disabled="!gameState.correct">Next Question</button>
-    <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large btn-red" ng-click="incorrectNext()" ng-disabled="gameState.question || gameState.thinking">Next Question</button>
+    <button ng-if="gameState.correct" type="button" class="btn btn-large green-button" ng-click="correctNext()" ng-disabled="!gameState.correct">Next Question</button>
+    <button ng-if="gameState.incorrect || gameState.wrongLetter" type="button" class="btn btn-large red-button" ng-click="incorrectNext()" ng-disabled="gameState.question || gameState.thinking">Next Question</button>
 
     <div ng-if="gameState.gameOver" class="incorrect">
       <p>Bummer! You've missed 3 questions, but you were right {{correctAnswerCount}} times and you used {{numberUnique}} unique words.</p>
