@@ -1,3 +1,6 @@
+/*********************************
+Base Styles
+*********************************/
 @font-face {
   font-family: 'DKCoolCrayon.ttf';
   src: url('/app/assets/fonts/DKCoolCrayon.ttf')  format('truetype');
@@ -8,7 +11,37 @@ body {
   color: #3a2000;
 }
 
+.red-button {
+  background-color: red;
+}
+
+.green-button {
+  background-color: green;
+}
+
+
+/*********************************
+Main Menu Styles
+*********************************/
 .home-container {
+  position: relative;
+}
+
+.giraffe {
+  max-width: 25%;
+  position: fixed;
+  top: 20px;
+  left: 0;
+}
+
+.treefrog {
+  max-width: 20%;
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+}
+
+.home-row-container {
   position: relative;
   display: flex;
   justify-content: center;
@@ -50,12 +83,6 @@ body {
  right: 15px;
 }
 
-/* .menu-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-} */
-
 .menu-container {
   display: flex;
   flex-direction: row;
@@ -78,8 +105,32 @@ body {
   height: 1rem;
 }
 
+
+/*********************************
+Auth Page Styles
+*********************************/
+.auth-container {
+  position: relative;
+  width: 100%;
+}
+
+.backgroundFrog {
+  position: fixed;
+  bottom: 0;
+  max-width: 100%;
+  z-index: -5;
+}
+
 .other-auth-option {
   padding-top: 5em;
+}
+
+
+/*********************************
+Game Page Styles
+*********************************/
+.game-container {
+  position: relative;
 }
 
 .hello {
@@ -89,6 +140,11 @@ body {
 .superlative {
   font-size: 1.5em;
   color: #3ce500;
+}
+
+.incorrect {
+  font-size: 1.5em;
+  color: red;
 }
 
 .question {
@@ -102,12 +158,4 @@ body {
 
 .game-over {
   color: red;
-}
-
-.red-button {
-  background-color: red;
-}
-
-.green-button {
-  background-color: green;
 }

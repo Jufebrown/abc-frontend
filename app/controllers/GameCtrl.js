@@ -30,6 +30,32 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
   $scope.username = localStorage.getItem('username')
   $scope.questionLetter = gameFactory.getRandomLetter()
 
+  $scope.getRandomImage = () => {
+    $scope.randomBinary = gameFactory.randomNum(0, 1)
+    console.log('randomBinary', $scope.randomBinary)
+    let whichPicJson = ''
+    if($scope.randomBinary === 0) {
+      whichPicJson = 'leftpics.json'
+    } else {
+      whichPicJson = 'rightpics.json'
+    }
+    gameFactory.getPicJson(whichPicJson)
+    .then((data) => {
+      console.log('data', data)
+      let picNum = gameFactory.randomNum(0, data.length)
+      console.log('picNum', picNum)
+      $scope.randomImage = {src: '', style: '', alt: ''}
+      $scope.randomImage.src = data[picNum].src
+      $scope.randomImage.style = data[picNum].style
+      $scope.randomImage.alt = data[picNum].alt
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  $scope.getRandomImage()
+
   $scope.checkAnimal = function() {
       $scope.gameState = {
         question: false,
