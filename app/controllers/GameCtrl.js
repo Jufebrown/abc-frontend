@@ -72,21 +72,21 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
         wrongLetter: false
       }
     // console.log('$scope.questionLetter', $scope.questionLetter)
-    if(gameFactory.checkStartLetter($scope.answer, $scope.questionLetter.toLowerCase())) {
-      gameFactory.checkAnswer($scope.answer)
+    if(gameFactory.checkStartLetter($scope.answer.toLowerCase(), $scope.questionLetter.toLowerCase())) {
+      gameFactory.checkAnswer($scope.answer.toLowerCase())
       .then(function(response) {
         // console.log('response from abc', response.data)
         if (response.data === null) {
           $scope.dbNull = true
-          gameFactory.searchSpeciesApi($scope.answer)
+          gameFactory.searchSpeciesApi($scope.answer.toLowerCase())
           .then(({data}) => {
             // console.log('api data', data.results)
-            if(gameFactory.analyzeSpeciesApiResults($scope.answer, data.results)) {
+            if(gameFactory.analyzeSpeciesApiResults($scope.answer.toLowerCase(), data.results)) {
               if($scope.dbNull === true) {
-                gameFactory.learnWord($scope.answer)
+                gameFactory.learnWord($scope.answer.toLowerCase())
               }
               console.log('before updateUnique after api call')
-              gameFactory.updateUnique($scope.answer)
+              gameFactory.updateUnique($scope.answer.toLowerCase())
               $scope.gameState = {
                 question: false,
                 thinking: false,
@@ -123,7 +123,7 @@ app.controller('GameCtrl', function($scope, $location, gameFactory, $route) {
           })
         } else {
           console.log('in db')
-          gameFactory.updateUnique($scope.answer)
+          gameFactory.updateUnique($scope.answer.toLowerCase())
           $scope.gameState = {
             question: false,
             thinking: false,
