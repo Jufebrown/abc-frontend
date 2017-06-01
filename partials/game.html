@@ -20,7 +20,7 @@
       <h3>Game Over</h3>
     </div>
     <form ng-hide="{{gameState.gameOver}}" class="answer-input-form" ng-submit="gameState.question && checkAnimal()" autocomplete="off">
-      <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" required autofocus>
+      <input ng-hide="{{gameState.gameOver}}" ng-readonly="!gameState.question" type="text" class="form-control animal-input" id="answer" placeholder="animal" ng-model="answer" pattern="[a-zA-Z\s]+" required autofocus title="Input should only contain letters">
     <button ng-if="gameState.question" type="submit" class="btn btn-large btn-default" ng-disabled="!gameState.question">Answer</button>
     </form>
     <div ng-if="gameState.wrongLetter" class="incorrect">
